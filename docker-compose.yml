@@ -2,6 +2,8 @@ version: "3.3"
 
 services:
     planner:
+        environment: 
+            - TASKS=4
         build:
             context: ./planner
             dockerfile: Dockerfile
@@ -9,16 +11,29 @@ services:
         container_name: planner
         ports:
             - "8080:8080"
-        volumes:
-            - .:/code
         
-    worker:
+    workeradd:
+        environment:
+            - PORT=3000
+            - ADD=true
         build:
             context: ./worker
             dockerfile: Dockerfile
-        image: worker
-        container_name: worker
+        image: workeradd
+        container_name: workeradd
         ports:
             - "3000:3000"
-        volumes:
-            - .:/code
+
+    workermult:
+        environment:
+            - PORT=3001
+            - MULT=true
+        build:
+            context: ./worker
+            dockerfile: Dockerfile
+        image: workermult
+        container_name: workermult
+        ports:
+            - "3001:3001"
+        extra_hosts: 
+            - host.docker.internal:host-gateway
