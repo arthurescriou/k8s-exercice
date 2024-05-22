@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: planner
+spec:
+  containers:
+  - name: planner
+    image: your-dockerhub-username/planner
+    ports:
+    - containerPort: 3000
+    env:
+    - name: TASKS
+      value: "4"

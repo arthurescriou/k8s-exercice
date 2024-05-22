@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker
+spec:
+  containers:
+  - name: worker
+    image: your-dockerhub-username/worker
+    ports:
+    - containerPort: 8080
+    env:
+    - name: PLANNER
+      value: "http://planner:3000"
