@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: planner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: planner
+  template:
+    metadata:
+      labels:
+        app: planner
+    spec:
+      containers:
+      - name: planner
+        image: your-dockerhub-username/planner
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TASKS
+          value: "4"
